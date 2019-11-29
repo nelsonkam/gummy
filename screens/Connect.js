@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react"
-import { View, StyleSheet, Text, Platform, Image } from "react-native"
+import { View, StyleSheet, Text, Platform, Image, StatusBar } from "react-native"
 import Touchable from "react-native-platform-touchable"
 import { Colors } from "../utils/constants"
 
 const Connect = () => {
   return (
     <View style={styles.container}>
+      <StatusBar backgroundColor="#31767A" />
       <Image style={styles.logo} source={require("../assets/gummy.png")} />
       <View style={styles.connect}>
         <Touchable>

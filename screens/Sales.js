@@ -6,10 +6,16 @@ import DateIntervalPicker from "../components/DateIntervalPicker"
 import ListItem from "../components/ListItem"
 import EmptyState from "../components/EmptyState"
 import Tabs from "../components/Tabs"
+import Divider from "../components/Divider"
 
 
 const Sales =  () => {
-  let sales = [{key: ""+Math.random()}, {key: ""+Math.random()}, {key: ""+Math.random()}, {key: ""+Math.random()}]
+  let sales = [
+    {key: '' + Math.random()},
+    {key: '' + Math.random()},
+    {key: '' + Math.random()},
+    {key: '' + Math.random()},
+  ];
   sales = []
   return (
 
@@ -34,7 +40,7 @@ const Sales =  () => {
       <Text style={styles.sectionTitle}>Your sales</Text>
       {sales.length !== 0 && <FlatList
         style={{marginVertical: 16}}
-        ItemSeparatorComponent={() => <View style={styles.divider}></View>}
+        ItemSeparatorComponent={Divider}
         data={sales}
         renderItem={({item, index}) => {
           return <ListItem
@@ -111,12 +117,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     marginTop: 22
-  },
-  divider: {
-    backgroundColor: "#E5E5E5",
-    marginVertical: 12,
-    width: "100%",
-    height: 1
   },
   grayText: {
     fontSize: 16,
