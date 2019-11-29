@@ -37,7 +37,7 @@ const Products =  () => {
           tabStyle={{borderColor: Colors.gummyGreen}}
         />
       {products.length !== 0 && <FlatList
-        ItemSeparatorComponent={Divider}
+        ItemSeparatorComponent={() => <Divider style={{marginVertical: 12}} />}
         data={products}
         renderItem={({item, index}) => {
           return <ListItem

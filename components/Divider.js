@@ -4,13 +4,13 @@ import Touchable from "react-native-platform-touchable"
 import { Colors } from "../utils/constants" 
 
 
-const Divider =  () => <View style={styles.divider}></View>
+const Divider =  (props) => <View {...props} style={{...styles.divider, ...props.style}}></View>
 
 const styles = StyleSheet.create({
   divider: {
     backgroundColor: "#E5E5E5",
-    marginVertical: 12,
     width: "100%",
+    marginVertical: 12,
     height: 1
   },
 });

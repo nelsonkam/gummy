@@ -40,7 +40,7 @@ const Sales =  () => {
       <Text style={styles.sectionTitle}>Your sales</Text>
       {sales.length !== 0 && <FlatList
         style={{marginVertical: 16}}
-        ItemSeparatorComponent={Divider}
+        ItemSeparatorComponent={() => <Divider style={{marginVertical: 12}} />}
         data={sales}
         renderItem={({item, index}) => {
           return <ListItem
