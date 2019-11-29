@@ -30,7 +30,7 @@ const OfferCodes =  () => {
     {key: '' + Math.random()},
     {key: '' + Math.random()},
   ];
-  // products = []
+  products = []
 
   return (
     <View style={styles.container}>
@@ -65,8 +65,8 @@ const OfferCodes =  () => {
         }}
       />}
       {products.length === 0 && <EmptyState 
-        title="No product found" 
-        subtitle="We couldn't find any product on your Gumroad account." 
+        title="No offer code found" 
+        subtitle="We couldn't find any offer code on your Gumroad account." 
       />}
       <Tabs currentTab="products" />
     </View>
