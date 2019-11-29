@@ -15,6 +15,13 @@ const Sales =  () => {
     {key: '' + Math.random()},
     {key: '' + Math.random()},
     {key: '' + Math.random()},
+    {key: '' + Math.random()},
+    {key: '' + Math.random()},
+    {key: '' + Math.random()},
+    {key: '' + Math.random()},
+    {key: '' + Math.random()},
+    {key: '' + Math.random()},
+    {key: '' + Math.random()},
   ];
   sales = []
   return (
@@ -41,6 +48,7 @@ const Sales =  () => {
       {sales.length !== 0 && <FlatList
         style={{marginVertical: 16}}
         ItemSeparatorComponent={() => <Divider style={{marginVertical: 12}} />}
+        contentContainerStyle={{paddingBottom:100}}
         data={sales}
         renderItem={({item, index}) => {
           return <ListItem

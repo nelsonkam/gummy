@@ -5,6 +5,7 @@ import { Colors } from "../utils/constants"
 import Divider from "../components/Divider"
 import ListItem from "../components/ListItem"
 import Tabs from "../components/Tabs"
+import Tag from "../components/Tag"
 
 const { width } = Dimensions.get('window');
 
@@ -61,9 +62,7 @@ const Product = () => {
           <View style={{ paddingHorizontal: 16, paddingVertical: 16 }}>
             <View style={styles.productTitleContainer}>
               <Text style={{fontWeight: "500", fontSize: 16}}>A product</Text>
-              <View style={styles.tag}>
-                <Text style={{color: "white", fontWeight: "600"}}>PUBLISHED</Text>
-              </View>
+              <Tag text="published" />
             </View>
             <Text style={{color: Colors.gray, fontSize: 16}}>Product description</Text>
             <Text style={styles.salesSection}>PRODUCT SALES</Text>
@@ -109,12 +108,6 @@ const styles = StyleSheet.create({
   },
   switch: {
     marginRight: 8,
-  },
-  tag: {
-    borderRadius: 4,
-    paddingVertical: 4,
-    paddingHorizontal: 8,
-    backgroundColor: Colors.green,
   },
   productTitleContainer: {
     marginBottom: 12,
