@@ -1,5 +1,5 @@
 import React from "react"
-import {Platform} from "react-native"
+import {Platform, Image} from "react-native"
 import {SafeAreaView} from "react-navigation"
 
 export const withSafeAreaView = (Component) => {
