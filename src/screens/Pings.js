@@ -4,8 +4,6 @@ import Touchable from "react-native-platform-touchable"
 import { Colors } from "../utils/constants" 
 import EmptyState from "../components/EmptyState";
 import Divider from "../components/Divider";
-import Tabs from "../components/Tabs";
-import { withSafeAreaView } from "../utils";
 
 
 const Pings =  () => {
@@ -45,7 +43,6 @@ const Pings =  () => {
         title="No notifications yet" 
         subtitle="Check back later, we'll notify you when something happens." 
       />}
-      <Tabs currentTab="pings" />
     </View>
   )
 }

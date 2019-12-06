@@ -4,7 +4,6 @@ import Touchable from "react-native-platform-touchable"
 import { Colors } from "../utils/constants"
 import Divider from "../components/Divider"
 import ListItem from "../components/ListItem"
-import Tabs from "../components/Tabs"
 import Tag from "../components/Tag"
 import { withSafeAreaView } from "../utils"
 

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react"
 import { View, StyleSheet, StatusBar, Text, Platform, Image, ImageBackground, ScrollView, Dimensions, Switch } from "react-native"
 import { Colors } from "../utils/constants"
 import Divider from "../components/Divider"
-import Tabs from "../components/Tabs"
 import Tag from "../components/Tag"
 
 const { width, height } = Dimensions.get('window');

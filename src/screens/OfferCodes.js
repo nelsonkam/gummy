@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from "react"
 import { View, StyleSheet, Text, Platform, Image, FlatList } from "react-native"
-import Touchable from "react-native-platform-touchable"
 import { Colors } from "../utils/constants" 
-import SegmentedControlTab from "react-native-segmented-control-tab";
 import EmptyState from "../components/EmptyState";
 import ListItem from "../components/ListItem";
 import Divider from "../components/Divider";
-import Tabs from "../components/Tabs";
 import Tag from "../components/Tag";
-import { withSafeAreaView } from "../utils";
 
 
 const OfferCodes =  ({navigation}) => {

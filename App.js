@@ -104,7 +104,6 @@ const App = () => {
     <>
       <StatusBar barStyle="dark-content" />
       <AppContainer />
-      {/* <Tabs currentTab="sales" /> */}
     </>
   );
 };
