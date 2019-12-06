@@ -1,31 +1,21 @@
 import React, { useState, useEffect } from "react"
 import { View, StyleSheet, StatusBar, Text, Platform, Image, ImageBackground, ScrollView, Dimensions, Switch } from "react-native"
-import Touchable from "react-native-platform-touchable"
 import { Colors } from "../utils/constants"
 import Divider from "../components/Divider"
-import ListItem from "../components/ListItem"
 import Tabs from "../components/Tabs"
 import Tag from "../components/Tag"
-import { withSafeAreaView } from "../utils"
 
 const { width, height } = Dimensions.get('window');
 
-
-const Sale = ({navigation}) => {
-  
+const Sale = () => {
+  const url = "https://static-2.gumroad.com/res/gumroad/5375728731577/asset_previews/0b8ca09c4b6fae834febe2837275bda3/retina/PH_cover.png"
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor="#31767A" />
       <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
-        <ImageBackground resizeMode="cover" style={styles.cover}>
-          <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-            <Touchable onPress={() => navigation.goBack()} style={styles.iconButton} >
-              <Image source={require("../assets/back.png")} style={{ width: 24, height: 24}}></Image>
-            </Touchable>
-          </View>
+        <ImageBackground source={{uri: url}} resizeMode="cover" style={styles.cover}>
         </ImageBackground>
         <Divider style={{marginVertical: 0}} />
-        <View style={{ marginBottom: 60 }}>
+        <View style={{ marginBottom: 10 }}>
           <View style={styles.middleSection}>
             <View onPress={() => null} style={{ flexDirection: "row", alignItems: "center" }}>
               <Text 
@@ -72,7 +62,6 @@ const Sale = ({navigation}) => {
           </View>
         </View>
       </ScrollView>
-      <Tabs currentTab="products" />
     </View>
   )
 }
@@ -124,4 +113,13 @@ const styles = StyleSheet.create({
   },
 });
 
-export default withSafeAreaView(Sale);
+Sale.navigationOptions = {
+  title: Platform.OS === "android" ? '' : 'Sale',
+  headerTitleStyle: {
+    color: Platform.OS === "android" ? 'white' : 'black',
+  },
+  headerTintColor: Platform.OS === "android" ? 'white' : Colors.gummyGreen,
+  headerTransparent: Platform.OS === "android"
+}
+
+export default Sale;

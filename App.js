@@ -1,7 +1,5 @@
 import React from 'react';
-import {StyleSheet, StatusBar} from 'react-native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-// import SafeAreaView from 'react-native-safe-area-view';
+import {Platform, StatusBar} from 'react-native';
 import Connect from './src/screens/Connect';
 import Sales from './src/screens/Sales';
 import Products from './src/screens/Products';
@@ -9,28 +7,72 @@ import Product from './src/screens/Product';
 import OfferCodes from './src/screens/OfferCodes';
 import Sale from './src/screens/Sale';
 import Pings from './src/screens/Pings';
+import Support from './src/screens/Support';
 import {useScreens} from 'react-native-screens';
 import Splash from './src/screens/Splash';
 import 'react-native-gesture-handler'
-import { createSwitchNavigator, createAppContainer, SafeAreaView } from 'react-navigation';
+import { createSwitchNavigator, createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
+import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
+import { Colors } from './src/utils/constants';
+import { renderIcon } from './src/utils';
 
 useScreens();
 
-const MainNavigator = createStackNavigator(
+const SalesNavigator = createStackNavigator({
+  Sales, Sale
+}, {
+  initialRouteName: 'Sales',
+  defaultNavigationOptions: {
+    title: "Sales",
+    headerStyle: {
+      // backgroundColor: Platform.OS == "android" ? Colors.gummyGreen : "white",
+    },
+  },
+  navigationOptions: {
+    tabBarIcon: renderIcon("sales"),
+  }
+});
+
+const ProductsNavigator = createStackNavigator({
+  Products, Product, OfferCodes
+}, {
+  initialRouteName: 'Products',
+  defaultNavigationOptions: {
+    title: "Products",
+  },
+  navigationOptions: {
+    tabBarIcon: renderIcon("tag"),
+  }
+});
+
+const PingsNavigator = createStackNavigator({
+  Pings
+}, {
+  initialRouteName: 'Pings',
+  defaultNavigationOptions: {
+    title: "Pings",
+  },
+  navigationOptions: {
+    tabBarIcon: renderIcon("ping"),
+  }
+})
+
+Support.navigationOptions = {
+  tabBarIcon: renderIcon("support"),
+}
+
+const MainNavigator = createMaterialBottomTabNavigator(
   {
-    Sales,
-    Products,
-    OfferCodes,
-    Sale,
-    Pings,
-    Product,
+    Sales: SalesNavigator,
+    Products: ProductsNavigator,
+    Pings: PingsNavigator,
+    Support
   },
   {
     initialRouteName: 'Sales',
-    defaultNavigationOptions: {
-      header: null,
-    },
+    shifting: false,
+    barStyle: { backgroundColor: Colors.gummyGreen },
   },
 );
 
@@ -52,8 +94,6 @@ const AppNavigator = createSwitchNavigator({
 }, {
   initialRouteName: "Login",
   defaultNavigationOptions: {
-    header: null,
-    transitionConfig: null,
   }
 });
 
@@ -64,6 +104,7 @@ const App = () => {
     <>
       <StatusBar barStyle="dark-content" />
       <AppContainer />
+      {/* <Tabs currentTab="sales" /> */}
     </>
   );
 };

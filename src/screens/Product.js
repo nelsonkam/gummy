@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { View, StyleSheet, Text, Platform, Image, ImageBackground, ScrollView, Dimensions, Switch } from "react-native"
+import { View, StyleSheet, StatusBar, Text, Platform, Image, ImageBackground, ScrollView, Dimensions, Switch } from "react-native"
 import Touchable from "react-native-platform-touchable"
 import { Colors } from "../utils/constants"
 import Divider from "../components/Divider"
@@ -24,15 +24,15 @@ const Product = ({navigation}) => {
   const toggleProduct = value => {
     setIsProductEnabled(value)
   }
+
+  const url = "https://static-2.gumroad.com/res/gumroad/5375728731577/asset_previews/0b8ca09c4b6fae834febe2837275bda3/retina/PH_cover.png"
   // sales = []
   return (
     <View style={styles.container}>
+      <StatusBar backgroundColor="#31767A" />
       <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
-        <ImageBackground resizeMode="cover" style={styles.cover}>
-          <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-            <Touchable onPress={() => navigation.goBack()} style={styles.iconButton} >
-              <Image source={require("../assets/back.png")} style={{ width: 24, height: 24}}></Image>
-            </Touchable>
+        <ImageBackground source={{uri: url}} resizeMode="cover" style={styles.cover}>
+          <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
             <View style={{flexDirection: "row"}}>
               <Touchable onPress={() => navigation.navigate("OfferCodes")} style={{...styles.iconButton, marginHorizontal: 16}}>
                 <Image source={require("../assets/discounts.png")} style={{ width: 24, height: 24}}></Image>
@@ -44,7 +44,7 @@ const Product = ({navigation}) => {
           </View>
         </ImageBackground>
         <Divider style={{marginVertical: 0}} />
-        <View style={{ marginBottom: 60 }}>
+        <View style={{ marginBottom: 12 }}>
           <View style={styles.middleSection}>
             <View onPress={() => null} style={{ flexDirection: "row", alignItems: "center" }}>
               <Switch style={styles.switch} onValueChange={toggleProduct} value={isProductEnabled} />
@@ -70,7 +70,6 @@ const Product = ({navigation}) => {
             {sales.length !== 0 && sales.map(item => (
               <React.Fragment key={item.key}>
                 <ListItem
-                  
                   title={<Text style={{fontSize: 16, fontWeight: "500"}}>A product</Text>}
                   subtitle={<Text style={styles.grayText}>nelson@gmail.com</Text>}
                   secondaryTitle={<Text style={styles.secondaryTitle}>$15</Text>}
@@ -82,7 +81,6 @@ const Product = ({navigation}) => {
           </View>
         </View>
       </ScrollView>
-      <Tabs currentTab="products" />
     </View>
   )
 }
@@ -95,7 +93,7 @@ const styles = StyleSheet.create({
   cover: {
     backgroundColor: Colors.gummyGreen,
     width,
-    justifyContent: 'space-between',
+    justifyContent: 'flex-end',
     padding: 16,
     height: height * 0.4,
   },
@@ -134,4 +132,13 @@ const styles = StyleSheet.create({
   },
 });
 
-export default withSafeAreaView(Product);
+Product.navigationOptions = {
+  title: Platform.OS === "android" ? '' : 'Product',
+  headerTitleStyle: {
+    color: Platform.OS === "android" ? 'white' : 'black',
+  },
+  headerTintColor: Platform.OS === "android" ? 'white' : Colors.gummyGreen,
+  headerTransparent: Platform.OS === "android"
+}
+
+export default Product;

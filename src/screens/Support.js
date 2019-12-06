@@ -4,18 +4,20 @@ import Touchable from "react-native-platform-touchable"
 import { Colors } from "../utils/constants" 
 
 
-const TitleBar = ({title}) => {
+const Support = () => {
   return (
-    <Text style={styles.title}>{title}</Text>
+    <View style={styles.container}>
+
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
-  title: {
-    fontSize: 28,
-    fontWeight: "bold",
-    marginTop: 8
+  container: {
+    flex: Platform.OS === "ios" ? 0 : 1,
+    height: "100%",
   },
 });
 
-export default TitleBar;
+
+export default Support;

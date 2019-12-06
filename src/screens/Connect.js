@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react"
 import { View, StyleSheet, Text, Platform, Image, StatusBar } from "react-native"
-import {SafeAreaView} from "react-navigation"
 import Touchable from "react-native-platform-touchable"
 import { Colors } from "../utils/constants"
 import AsyncStorage from "@react-native-community/async-storage"

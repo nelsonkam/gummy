@@ -34,21 +34,12 @@ const OfferCodes =  ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.topBar}>
-        <Touchable onPress={() => navigation.goBack()} style={styles.iconButton} >
-          <Image source={require("../assets/back.png")} style={{ width: 24, height: 24}}></Image>
-        </Touchable>
-        <Text style={{fontWeight: "500", fontSize: 18}}>Offer Codes</Text>
-        <Touchable onPress={() => null} style={{...styles.iconButton, backgroundColor: Colors.gummyGreen}}>
-          <Image source={require("../assets/plus.png")} style={{ width: 24, height: 24}}></Image>
-        </Touchable>
-      </View>
-      <Divider style={{marginVertical: 0}} />
+      
       
       {products.length !== 0 && <FlatList
         ItemSeparatorComponent={() => <Divider />}
         data={products}
-        style={{paddingHorizontal: 16, paddingTop: 16}}
+        style={{paddingHorizontal: 16, paddingTop: 12}}
         contentContainerStyle={{paddingBottom:100}}
         showsVerticalScrollIndicator={false}
         renderItem={({item, index}) => {
@@ -69,7 +60,6 @@ const OfferCodes =  ({navigation}) => {
         title="No offer code found" 
         subtitle="We couldn't find any offer code on your Gumroad account." 
       />}
-      <Tabs currentTab="products" />
     </View>
   )
 }
@@ -97,4 +87,8 @@ const styles = StyleSheet.create({
   }
 });
 
-export default withSafeAreaView(OfferCodes);
+OfferCodes.navigationOptions = {
+  title: 'Offer Codes'
+}
+
+export default OfferCodes;

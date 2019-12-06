@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from "react"
-import { View, StyleSheet, Text, Platform, Image, FlatList } from "react-native"
-import { SafeAreaView } from "react-navigation"
-import Touchable from "react-native-platform-touchable"
+import { View, StyleSheet, Text, Platform, Image, FlatList, StatusBar, ScrollView } from "react-native"
 import { Colors } from "../utils/constants"
 import DateIntervalPicker from "../components/DateIntervalPicker"
 import ListItem from "../components/ListItem"
 import EmptyState from "../components/EmptyState"
-import Tabs from "../components/Tabs"
 import Divider from "../components/Divider"
-import { withSafeAreaView } from "../utils"
 
 
 const Sales = ({ navigation }) => {
@@ -29,48 +25,46 @@ const Sales = ({ navigation }) => {
   return (
 
     <View style={styles.container}>
-      <View style={styles.topBar}>
-        <Image style={styles.logo} source={require("../assets/gummy-green.png")}></Image>
-      </View>
-      <View style={styles.card}>
-        <View style={styles.dateContainer}>
-          <Text style={styles.currentInterval}>TODAY</Text>
-          <View style={{ flexDirection: "row" }}>
-            <DateIntervalPicker letter="D" selected style={{ marginLeft: 8 }} />
-            <DateIntervalPicker letter="W" style={{ marginLeft: 8 }} />
-            <DateIntervalPicker letter="M" style={{ marginLeft: 8 }} />
+      <StatusBar backgroundColor={Colors.gummyGreenDark} />
+      <ScrollView style={{flex: 1, paddingTop: 16}} showsVerticalScrollIndicator={false}>
+        <View style={styles.card}>
+          <View style={styles.dateContainer}>
+            <Text style={styles.currentInterval}>TODAY</Text>
+            <View style={{ flexDirection: "row" }}>
+              <DateIntervalPicker letter="D" selected style={{ marginLeft: 8 }} />
+              <DateIntervalPicker letter="W" style={{ marginLeft: 8 }} />
+              <DateIntervalPicker letter="M" style={{ marginLeft: 8 }} />
+            </View>
+          </View>
+          <View style={styles.totalContainer}>
+            <Text style={styles.salesTotal}>$350</Text>
+            <Text style={styles.customersTotal}>from 35 customers</Text>
           </View>
         </View>
-        <View style={styles.totalContainer}>
-          <Text style={styles.salesTotal}>$350</Text>
-          <Text style={styles.customersTotal}>from 35 customers</Text>
-        </View>
-      </View>
-      <Text style={styles.sectionTitle}>Your sales</Text>
-      {sales.length !== 0 && <FlatList
-        style={{ marginVertical: 16 }}
-        ItemSeparatorComponent={() => <Divider style={{ marginVertical: 12 }} />}
-        contentContainerStyle={{ paddingBottom: 100 }}
-        showsVerticalScrollIndicator={false}
-        data={sales}
-        renderItem={({ item, index }) => {
-          return <ListItem
-            onPress={() => navigation.navigate("Sale")}
-            title={<Text style={{ fontSize: 16, fontWeight: "500" }}>A product</Text>}
-            subtitle={<Text style={styles.grayText}>nelson@gmail.com</Text>}
-            secondaryTitle={<Text style={styles.secondaryTitle}>$15</Text>}
-            secondarySubtitle={<Text style={styles.grayText}>3 hours ago</Text>}
-          />
-        }}
-      />}
-      {sales.length === 0 && <EmptyState
-        title="It’s quiet here..."
-        subtitle="Wait for a sale or trying tapping on one of these 👇"
-        action={<Image style={{ height: 64, width: 132 }} source={require("../assets/snapshot.png")} />}
-      />}
-      <Tabs currentTab="sales" />
+        <Text style={styles.sectionTitle}>Your sales</Text>
+        {sales.length !== 0 && <FlatList
+          style={{ marginTop: 16 }}
+          ItemSeparatorComponent={() => <Divider style={{ marginVertical: 12 }} />}
+          contentContainerStyle={{ paddingBottom: 12 }}
+          showsVerticalScrollIndicator={false}
+          data={sales}
+          renderItem={({ item, index }) => {
+            return <ListItem
+              onPress={() => navigation.navigate("Sale")}
+              title={<Text style={{ fontSize: 16, fontWeight: "500" }}>A product</Text>}
+              subtitle={<Text style={styles.grayText}>nelson@gmail.com</Text>}
+              secondaryTitle={<Text style={styles.secondaryTitle}>$15</Text>}
+              secondarySubtitle={<Text style={styles.grayText}>3 hours ago</Text>}
+            />
+          }}
+        />}
+        {sales.length === 0 && <EmptyState
+          title="It’s quiet here..."
+          subtitle="Wait for a sale or trying tapping on one of these 👇"
+          action={<Image style={{ height: 64, width: 132 }} source={require("../assets/snapshot.png")} />}
+        />}
+      </ScrollView>
     </View>
-
   )
 }
 
@@ -78,7 +72,7 @@ const styles = StyleSheet.create({
   container: {
     flex: Platform.OS === "ios" ? 0 : 1,
     height: "100%",
-    padding: 16,
+    paddingHorizontal: 16,
   },
   topBar: {
     alignItems: "center",
@@ -142,4 +136,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default withSafeAreaView(Sales);
+export default Sales;

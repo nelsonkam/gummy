@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react"
-import { View, StyleSheet, Text, Platform, Image, FlatList } from "react-native"
+import { View, StyleSheet, Text, Platform, FlatList } from "react-native"
 import Touchable from "react-native-platform-touchable"
 import { Colors } from "../utils/constants" 
-import SegmentedControlTab from "react-native-segmented-control-tab";
 import EmptyState from "../components/EmptyState";
-import ListItem from "../components/ListItem";
 import Divider from "../components/Divider";
 import Tabs from "../components/Tabs";
 import { withSafeAreaView } from "../utils";
@@ -33,11 +31,9 @@ const Pings =  () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Pings</Text>
-      
       {products.length !== 0 && <FlatList
         ItemSeparatorComponent={() => <Divider style={{marginVertical: 10}} />}
-        contentContainerStyle={{paddingBottom:100}}
+        contentContainerStyle={{paddingVertical:12}}
         data={products}
         showsVerticalScrollIndicator={false}
         renderItem={({item, index}) => {
@@ -89,7 +85,8 @@ const styles = StyleSheet.create({
   container: {
     flex: Platform.OS === "ios" ? 0 : 1,
     height: "100%",
-    padding: 16
+    paddingHorizontal: 16,
+    backgroundColor: "white"
   },
   title: {
     fontSize: 28,
@@ -108,4 +105,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default withSafeAreaView(Pings);
+export default Pings;
