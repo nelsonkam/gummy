@@ -7,6 +7,7 @@ import EmptyState from "../components/EmptyState";
 import ListItem from "../components/ListItem";
 import Divider from "../components/Divider";
 import Tabs from "../components/Tabs";
+import { withSafeAreaView } from "../utils";
 
 
 const Pings =  () => {
@@ -38,6 +39,7 @@ const Pings =  () => {
         ItemSeparatorComponent={() => <Divider style={{marginVertical: 10}} />}
         contentContainerStyle={{paddingBottom:100}}
         data={products}
+        showsVerticalScrollIndicator={false}
         renderItem={({item, index}) => {
           return <Ping 
           />
@@ -58,7 +60,7 @@ const Ping =  ({title, subtitle, secondaryTitle, secondarySubtitle}) => {
     <Touchable style={pingStyles.container}>
       <>
         <View style={pingStyles.row}>
-          <Text style={{fontSize: 16, fontWeight: "600", color: Colors.gummyGreen}}>New sale</Text>
+          <Text style={{fontSize: 16, fontWeight: "700", color: Colors.gummyGreen}}>New sale</Text>
           <Text style={styles.secondaryTitle}>$15</Text>
         </View>
         <Text style={{fontSize: 16}}>A product</Text>
@@ -106,4 +108,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Pings;
+export default withSafeAreaView(Pings);

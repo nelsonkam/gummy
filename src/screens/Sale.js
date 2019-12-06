@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from "react"
-import { View, StyleSheet, Text, Platform, Image, ImageBackground, ScrollView, Dimensions, Switch } from "react-native"
+import { View, StyleSheet, StatusBar, Text, Platform, Image, ImageBackground, ScrollView, Dimensions, Switch } from "react-native"
 import Touchable from "react-native-platform-touchable"
 import { Colors } from "../utils/constants"
 import Divider from "../components/Divider"
 import ListItem from "../components/ListItem"
 import Tabs from "../components/Tabs"
 import Tag from "../components/Tag"
+import { withSafeAreaView } from "../utils"
 
-const { width } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
 
 const Sale = ({navigation}) => {
   
   return (
     <View style={styles.container}>
-      <ScrollView style={{ flex: 1 }}>
+      <StatusBar backgroundColor="#31767A" />
+      <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
         <ImageBackground resizeMode="cover" style={styles.cover}>
           <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
             <Touchable onPress={() => navigation.goBack()} style={styles.iconButton} >
@@ -85,7 +87,7 @@ const styles = StyleSheet.create({
     width,
     justifyContent: 'space-between',
     padding: 16,
-    height: 320,
+    height: height* 0.4,
   },
   iconButton: {backgroundColor: '#ffffff', padding: 8, borderRadius: 100},
   middleSection: {
@@ -104,7 +106,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  toggleText: {maxWidth: 200, fontWeight: '600', fontSize: 16},
+  toggleText: {maxWidth: 200, fontWeight: '700', fontSize: 16},
   salesSection: {
     marginVertical: 16,
     fontWeight: 'bold',
@@ -122,4 +124,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Sale;
+export default withSafeAreaView(Sale);

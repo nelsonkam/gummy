@@ -1,43 +1,44 @@
 import React, { useState, useEffect } from "react"
 import { View, StyleSheet, Text, Platform, Image, FlatList } from "react-native"
-import {SafeAreaView} from "react-navigation"
+import { SafeAreaView } from "react-navigation"
 import Touchable from "react-native-platform-touchable"
-import { Colors } from "../utils/constants" 
+import { Colors } from "../utils/constants"
 import DateIntervalPicker from "../components/DateIntervalPicker"
 import ListItem from "../components/ListItem"
 import EmptyState from "../components/EmptyState"
 import Tabs from "../components/Tabs"
 import Divider from "../components/Divider"
+import { withSafeAreaView } from "../utils"
 
 
-const Sales = ({navigation}) => {
+const Sales = ({ navigation }) => {
   let sales = [
-    {key: '' + Math.random()},
-    {key: '' + Math.random()},
-    {key: '' + Math.random()},
-    {key: '' + Math.random()},
-    {key: '' + Math.random()},
-    {key: '' + Math.random()},
-    {key: '' + Math.random()},
-    {key: '' + Math.random()},
-    {key: '' + Math.random()},
-    {key: '' + Math.random()},
-    {key: '' + Math.random()},
+    { key: '' + Math.random() },
+    { key: '' + Math.random() },
+    { key: '' + Math.random() },
+    { key: '' + Math.random() },
+    { key: '' + Math.random() },
+    { key: '' + Math.random() },
+    { key: '' + Math.random() },
+    { key: '' + Math.random() },
+    { key: '' + Math.random() },
+    { key: '' + Math.random() },
+    { key: '' + Math.random() },
   ];
   // sales = []
   return (
 
-    <SafeAreaView forceInset={{bottom: "always"}} style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.topBar}>
         <Image style={styles.logo} source={require("../assets/gummy-green.png")}></Image>
       </View>
       <View style={styles.card}>
         <View style={styles.dateContainer}>
           <Text style={styles.currentInterval}>TODAY</Text>
-          <View style={{flexDirection: "row"}}>
-            <DateIntervalPicker letter="D" selected style={{marginLeft: 8}} />
-            <DateIntervalPicker letter="W" style={{marginLeft: 8}} />
-            <DateIntervalPicker letter="M" style={{marginLeft: 8}} />
+          <View style={{ flexDirection: "row" }}>
+            <DateIntervalPicker letter="D" selected style={{ marginLeft: 8 }} />
+            <DateIntervalPicker letter="W" style={{ marginLeft: 8 }} />
+            <DateIntervalPicker letter="M" style={{ marginLeft: 8 }} />
           </View>
         </View>
         <View style={styles.totalContainer}>
@@ -47,27 +48,29 @@ const Sales = ({navigation}) => {
       </View>
       <Text style={styles.sectionTitle}>Your sales</Text>
       {sales.length !== 0 && <FlatList
-        style={{marginVertical: 16}}
-        ItemSeparatorComponent={() => <Divider style={{marginVertical: 12}} />}
-        contentContainerStyle={{paddingBottom:100}}
+        style={{ marginVertical: 16 }}
+        ItemSeparatorComponent={() => <Divider style={{ marginVertical: 12 }} />}
+        contentContainerStyle={{ paddingBottom: 100 }}
+        showsVerticalScrollIndicator={false}
         data={sales}
-        renderItem={({item, index}) => {
+        renderItem={({ item, index }) => {
           return <ListItem
             onPress={() => navigation.navigate("Sale")}
-            title={<Text style={{fontSize: 16, fontWeight: "500"}}>A product</Text>}
+            title={<Text style={{ fontSize: 16, fontWeight: "500" }}>A product</Text>}
             subtitle={<Text style={styles.grayText}>nelson@gmail.com</Text>}
             secondaryTitle={<Text style={styles.secondaryTitle}>$15</Text>}
             secondarySubtitle={<Text style={styles.grayText}>3 hours ago</Text>}
           />
         }}
       />}
-      {sales.length === 0 && <EmptyState 
-        title="It’s quiet here..." 
-        subtitle="Wait for a sale or trying tapping on one of these 👇" 
-        action={<Image style={{height: 64, width: 132}} source={require("../assets/snapshot.png")} />}
+      {sales.length === 0 && <EmptyState
+        title="It’s quiet here..."
+        subtitle="Wait for a sale or trying tapping on one of these 👇"
+        action={<Image style={{ height: 64, width: 132 }} source={require("../assets/snapshot.png")} />}
       />}
       <Tabs currentTab="sales" />
-    </SafeAreaView>
+    </View>
+
   )
 }
 
@@ -92,7 +95,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     backgroundColor: Colors.gummyGreenLight,
     shadowColor: "#444",
-    shadowOffset: {width: 0, height: 1},
+    shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.3,
     shadowRadius: 2,
     elevation: 1,
@@ -139,4 +142,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Sales;
+export default withSafeAreaView(Sales);

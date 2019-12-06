@@ -7,7 +7,7 @@ import { Colors } from "../utils/constants"
 const Tag = ({text, color = Colors.green, style}) => {
   return (
     <View style={{...styles.tag, backgroundColor: color, ...style}}>
-      <Text style={{color: "white", fontWeight: "600"}}>{text.toUpperCase()}</Text>
+      <Text style={{color: "white", fontWeight: "700"}}>{text.toUpperCase()}</Text>
     </View>
   )
 }

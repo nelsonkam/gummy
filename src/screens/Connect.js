@@ -11,8 +11,8 @@ const Connect = ({navigation}) => {
     navigation.navigate("Main")
   }
   return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar backgroundColor="#31767A" />
+    <View style={styles.container}>
+      <StatusBar barStyle="light-content" backgroundColor="#31767A" />
       <Image style={styles.logo} source={require("../assets/gummy.png")} />
       <View style={styles.connect}>
         <Touchable onPress={handleConnect}>
@@ -23,7 +23,7 @@ const Connect = ({navigation}) => {
         </Touchable>
         <Text style={styles.legalese}>By connecting your Gumroad account, you agree to our Terms of Service and Privacy Policy.</Text>
       </View>
-    </SafeAreaView>
+    </View>
   )
 }
 

@@ -8,6 +8,7 @@ import ListItem from "../components/ListItem";
 import Divider from "../components/Divider";
 import Tabs from "../components/Tabs";
 import Tag from "../components/Tag";
+import { withSafeAreaView } from "../utils";
 
 
 const OfferCodes =  ({navigation}) => {
@@ -34,7 +35,7 @@ const OfferCodes =  ({navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.topBar}>
-        <Touchable onPress={() => navigation.goback()} style={styles.iconButton} >
+        <Touchable onPress={() => navigation.goBack()} style={styles.iconButton} >
           <Image source={require("../assets/back.png")} style={{ width: 24, height: 24}}></Image>
         </Touchable>
         <Text style={{fontWeight: "500", fontSize: 18}}>Offer Codes</Text>
@@ -49,6 +50,7 @@ const OfferCodes =  ({navigation}) => {
         data={products}
         style={{paddingHorizontal: 16, paddingTop: 16}}
         contentContainerStyle={{paddingBottom:100}}
+        showsVerticalScrollIndicator={false}
         renderItem={({item, index}) => {
           return <ListItem
             title={<Text style={{fontSize: 16, fontWeight: "500"}}>discount-code</Text>}
@@ -95,4 +97,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default OfferCodes;
+export default withSafeAreaView(OfferCodes);

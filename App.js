@@ -63,12 +63,7 @@ const App = () => {
   return (
     <>
       <StatusBar barStyle="dark-content" />
-      
-
-        <AppContainer />
-
-
-      
+      <AppContainer />
     </>
   );
 };

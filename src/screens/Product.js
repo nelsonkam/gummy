@@ -6,8 +6,9 @@ import Divider from "../components/Divider"
 import ListItem from "../components/ListItem"
 import Tabs from "../components/Tabs"
 import Tag from "../components/Tag"
+import { withSafeAreaView } from "../utils"
 
-const { width } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
 const shareIcon = Platform.OS === "ios" ? require("../assets/share-ios.png") : require("../assets/share-android.png")
 
@@ -26,10 +27,10 @@ const Product = ({navigation}) => {
   // sales = []
   return (
     <View style={styles.container}>
-      <ScrollView style={{ flex: 1 }}>
+      <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
         <ImageBackground resizeMode="cover" style={styles.cover}>
           <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-            <Touchable onPress={() => navigation.goback()} style={styles.iconButton} >
+            <Touchable onPress={() => navigation.goBack()} style={styles.iconButton} >
               <Image source={require("../assets/back.png")} style={{ width: 24, height: 24}}></Image>
             </Touchable>
             <View style={{flexDirection: "row"}}>
@@ -96,7 +97,7 @@ const styles = StyleSheet.create({
     width,
     justifyContent: 'space-between',
     padding: 16,
-    height: 320,
+    height: height * 0.4,
   },
   iconButton: {backgroundColor: '#ffffff', padding: 8, borderRadius: 100},
   middleSection: {
@@ -107,7 +108,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   switch: {
-    marginRight: 8,
+    marginRight: 4,
   },
   productTitleContainer: {
     marginBottom: 12,
@@ -133,4 +134,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Product;
+export default withSafeAreaView(Product);

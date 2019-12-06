@@ -4,6 +4,7 @@ import Touchable from "react-native-platform-touchable"
 import { Colors } from "../utils/constants" 
 import AsyncStorage from "@react-native-community/async-storage"
 import {useNavigation} from "react-navigation-hooks"
+import { withSafeAreaView } from "../utils"
 
 const Splash = ({navigation}) => {
 
@@ -19,9 +20,9 @@ const Splash = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-    <StatusBar backgroundColor="#31767A" />
-    <Image source={require("../assets/gummy.png")} style={styles.logo} />
-  </View>
+      <StatusBar backgroundColor="#31767A" />
+      <Image source={require("../assets/gummy.png")} style={styles.logo} />
+    </View>
   )
 }
 
@@ -39,4 +40,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Splash;
+export default withSafeAreaView(Splash);
