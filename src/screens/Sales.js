@@ -26,15 +26,10 @@ const Sales = ({ navigation }) => {
 
     <View style={styles.container}>
       <StatusBar backgroundColor={Colors.gummyGreenDark} />
-      <ScrollView style={{flex: 1, paddingTop: 16}} showsVerticalScrollIndicator={false}>
+      <ScrollView style={{ flex: 1, paddingTop: 16 }} showsVerticalScrollIndicator={false}>
         <View style={styles.card}>
           <View style={styles.dateContainer}>
             <Text style={styles.currentInterval}>TODAY</Text>
-            <View style={{ flexDirection: "row" }}>
-              <DateIntervalPicker letter="D" selected style={{ marginLeft: 8 }} />
-              <DateIntervalPicker letter="W" style={{ marginLeft: 8 }} />
-              <DateIntervalPicker letter="M" style={{ marginLeft: 8 }} />
-            </View>
           </View>
           <View style={styles.totalContainer}>
             <Text style={styles.salesTotal}>$350</Text>
@@ -42,22 +37,18 @@ const Sales = ({ navigation }) => {
           </View>
         </View>
         <Text style={styles.sectionTitle}>Your sales</Text>
-        {sales.length !== 0 && <FlatList
-          style={{ marginTop: 16 }}
-          ItemSeparatorComponent={() => <Divider style={{ marginVertical: 12 }} />}
-          contentContainerStyle={{ paddingBottom: 12 }}
-          showsVerticalScrollIndicator={false}
-          data={sales}
-          renderItem={({ item, index }) => {
-            return <ListItem
+        {sales.length !== 0 && sales.map(item => (
+          <React.Fragment key={item.key}>
+            <ListItem
               onPress={() => navigation.navigate("Sale")}
               title={<Text style={{ fontSize: 16, fontWeight: "500" }}>A product</Text>}
               subtitle={<Text style={styles.grayText}>nelson@gmail.com</Text>}
               secondaryTitle={<Text style={styles.secondaryTitle}>$15</Text>}
               secondarySubtitle={<Text style={styles.grayText}>3 hours ago</Text>}
             />
-          }}
-        />}
+            <Divider />
+          </React.Fragment>
+        ))}
         {sales.length === 0 && <EmptyState
           title="It’s quiet here..."
           subtitle="Wait for a sale or trying tapping on one of these 👇"
@@ -96,7 +87,7 @@ const styles = StyleSheet.create({
   },
   dateContainer: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "center",
     alignItems: "center"
   },
   currentInterval: {
@@ -105,7 +96,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold"
   },
   totalContainer: {
-    marginVertical: 22
+    marginTop: 16
   },
   salesTotal: {
     color: "white",
@@ -123,7 +114,8 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 20,
     fontWeight: "bold",
-    marginTop: 22
+    marginTop: 22,
+    marginBottom: 16
   },
   grayText: {
     fontSize: 16,

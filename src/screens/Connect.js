@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react"
-import { View, StyleSheet, Text, Platform, Image, StatusBar } from "react-native"
+import { View, StyleSheet, Text, Platform, Image, StatusBar, Linking } from "react-native"
 import Touchable from "react-native-platform-touchable"
-import { Colors } from "../utils/constants"
+import { Colors, OAUTH_URL } from "../utils/constants"
 import AsyncStorage from "@react-native-community/async-storage"
 
 const Connect = ({navigation}) => {
   const handleConnect = () => {
-    AsyncStorage.setItem("is_connected", JSON.stringify(true))
-    navigation.navigate("Main")
+    Linking.openURL(OAUTH_URL)
   }
   return (
     <View style={styles.container}>
